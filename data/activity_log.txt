@@ -1,0 +1,33 @@
+2025-12-12 17:18:27|admin|add_suspect|Added suspect: 1001 - Ali
+2025-12-12 17:19:54|admin|add_suspect|Added suspect: 1000 - Asawar
+2025-12-12 17:22:43|admin|add_suspect|Added suspect: 10000 - Aki
+2025-12-12 17:31:44|admin|add_suspect|Added suspect: 10001 - Hussnain
+2025-12-12 17:38:00|user|bfs_search|Path: 1001 → 1000
+2025-12-16 12:34:39|admin|add_suspect|Added suspect: 213 - dd
+2025-12-16 12:48:05|admin|add_suspect|Added suspect: 222 - AHASN ALI
+2025-12-16 12:50:40|admin|add_officer|New officer: officer3
+2025-12-16 12:51:20|admin|add_case_item|Case case02: witness
+2025-12-16 12:51:34|admin|assign_case|Case case02 → Officer officer3
+2025-12-16 12:52:10|user|view_case|Viewing case: case3
+2025-12-16 12:52:19|user|view_case|Viewing case: case02
+2025-12-19 16:20:25|admin|add_suspect|Added suspect: 90 - Asawar
+2025-12-19 16:21:28|admin|add_connection|90 → Loo1 [visited_location]
+2025-12-19 16:22:07|user|view_graph|Full network display
+2025-12-19 16:22:31|user|dfs_search|Starting from: S001
+2025-12-23 14:47:09|admin|add_suspect|Added suspect: 01 - Hussnain Ahmad
+2025-12-23 14:47:31|admin|add_suspect|Added suspect: 02 - Ali Hassan
+2025-12-23 14:47:48|admin|add_suspect|Added suspect: 03 - Zaid
+2025-12-23 14:48:10|admin|add_location|Added location: 001 - I-8 Markaz
+2025-12-23 14:48:35|admin|add_location|Added location: 002 - F-6
+2025-12-23 14:48:48|admin|add_connection|01 → 03 [friend]
+2025-12-23 14:48:57|user|bfs_search|Path: 01 → 03
+2025-12-23 14:49:10|user|dfs_search|Starting from: 01
+2025-12-23 14:49:20|user|view_graph|Full network display
+2025-12-23 14:50:02|admin|add_case_item|Case 001: evidence
+2025-12-23 14:50:05|user|view_case|Viewing case: 001
+2025-12-23 14:50:35|admin|assign_case|Case 001 → Officer officer3
+2025-12-23 14:51:28|admin|add_connection|001 → 002 [witness]
+2025-12-23 14:53:27|user|view_graph|Full network display
+2025-12-23 16:16:07|admin|add_suspect|Added suspect: 76 - NOOORR
+2025-12-23 16:16:36|admin|add_connection|001 → 003 [visited_location]
+2025-12-23 16:16:48|user|view_graph|Full network display

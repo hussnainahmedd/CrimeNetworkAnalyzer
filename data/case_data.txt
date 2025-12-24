@@ -1,0 +1,12 @@
+CASE|001
+evidence|Husshauhua
+END
+CASE|CASE001
+evidence|Security camera footage shows S001 entering bank at 2:15 PM
+evidence|Fingerprints found on vault door match S003
+witness|Bank teller identified S001 from photo lineup
+timeline|2:15 PM - Suspects seen fleeing in blue sedan
+END
+CASE|case02
+witness|NOTHING
+END

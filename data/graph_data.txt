@@ -1,0 +1,28 @@
+NODES
+001|I-8 Markaz|location|crime_type:Robbery
+002|F-6|location|crime_type:Blast
+01|Hussnain Ahmad|suspect|address:st 123|age:35
+02|Ali Hassan|suspect|address:st 346|age:39
+03|Zaid|suspect|address:st 432|age:44
+1000|Asawar|suspect|address:LAHORE|age:25
+10000|Aki|suspect|address:231 St|age:23
+10001|Hussnain|suspect|address:Lahore|age:67
+1001|Ali|suspect|address:st 123|age:23
+213|dd|suspect|address:Unknown|age:23
+222|AHASN ALI|suspect|address:ST 576|age:67
+76|NOOORR|suspect|address:st 2345|age:65
+90|Asawar|suspect|address:FSD|age:23
+L001|Downtown Bank|location|crime_type:Robbery
+S001|Alice Johnson|suspect|address:123 Main St|age:28
+S002|Bob Smith|suspect|address:456 Oak Ave|age:35
+S003|Charlie Davis|suspect|address:789 Pine Rd|age:32
+S004|Diana Martinez|suspect|address:321 Elm St|age:29
+TEST001|Test Person|suspect|address:Test Street|age:25
+EDGES
+001|002|witness
+01|03|friend
+L001|S001|visited_location
+L001|S003|visited_location
+S001|S002|friend
+S002|S003|call_history
+S003|S004|family

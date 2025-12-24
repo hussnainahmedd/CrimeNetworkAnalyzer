@@ -1,0 +1,4 @@
+admin|admin123|admin
+officer1|pass123|officer
+officer2|pass456|officer
+officer3|pass234|officer
