@@ -1,184 +1,90 @@
 <div align="center">
 
-# 🕵️‍♂️ Crime Network Analyzer
+# Crime Network Analyzer
 
-### _Uncover the Hidden Links in Criminal Organizations_
+### A desktop app for mapping and analyzing criminal networks
 
-[![Java](https://img.shields.io/badge/Java-Swing-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/)
+[![Java](https://img.shields.io/badge/Java-24_ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://openjdk.org/)
+[![Java Swing](https://img.shields.io/badge/GUI-Java_Swing-ED8B00?style=for-the-badge)](https://docs.oracle.com/javase/tutorial/uiswing/)
 [![C++](https://img.shields.io/badge/Backend-C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
 [![Maven](https://img.shields.io/badge/Build-Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)](https://maven.apache.org/)
-[![JSON](https://img.shields.io/badge/Inter--Process-JSON-000000?style=for-the-badge&logo=json&logoColor=white)](#)
+[![JSON IPC](https://img.shields.io/badge/IPC-JSON_Files-000000?style=for-the-badge&logo=json&logoColor=white)](#how-it-works)
 
 <br/>
 
-```
-    ╔══════════════════════════════════════════════════════╗
-    ║                                                      ║
-    ║        👤 ────❓──── 📍 ────❓──── 👤               ║
-    ║        │              │              │               ║
-    ║        ❓             ❓             ❓              ║
-    ║        │              │              │               ║
-    ║        📍 ────❓──── 👤 ────❓──── 📍               ║
-    ║                                                      ║
-    ║       Connect the dots. Solve the impossible.        ║
-    ╚══════════════════════════════════════════════════════╝
-```
+![Crime Network Analyzer preview](assets/hero.webp)
 
 <br/>
 
-> 🔍 A **hybrid software system** featuring a rich **Java Swing Graphical Interface** powered by a high-performance **C++ analysis backend**. This application is designed for law enforcement to map, track, and analyze complex criminal networks, suspects, and case hierarchies.
-
----
-
-[Features](#-features) •
-[Architecture](#-system-architecture) •
-[Tech Stack](#-tech-stack) •
-[Setup](#-quick-start) •
-[Usage](#-usage-guide)
+A hybrid system built for a university DSA project: a **Java Swing desktop GUI** backed by a **C++ analysis engine**. The two processes talk to each other through JSON request/response files, so the UI stays responsive while the backend crunches graph algorithms.
 
 </div>
-
----
 
 ## ✨ Features
 
-<table>
-<tr>
-<td width="50%">
+- **Role-based login** — admins get the full toolkit; officers get a limited view of their assigned cases
+- **Suspect registry** — add suspects with name, age, address, and evidence notes
+- **Crime locations** — log locations tied to cases
+- **Connections graph** — link suspects as accomplices, family, friends, or via call history
+- **Graph analysis** — run BFS, DFS, and shortest-path queries across the network from the "Analyze Network" tab
+- **Case hierarchy** — organize cases and drill into case details
+- **Officer management** — admins can add officers and assign cases to them
+- **Activity log** — every action is recorded for audit
 
-### 🔐 Role-Based Access Control
-- **Admin Role:** Full system access (Manage Officers, Global Case Hierarchy, Add Entities).
-- **Officer Role:** Focused dashboard for assigned cases and network viewing.
-- Secure login portal integrated seamlessly into the application flow.
+## 🛠 Tech Stack
 
-### 🕸️ Network Graph Management
-- **Add Suspects & Locations:** Feed raw intelligence into the system.
-- **Map Connections:** Link suspects to locations or other individuals to build the investigative web.
+| Layer | Tech |
+|---|---|
+| Frontend | Java Swing (single-window tabbed UI, `src/main/java/CrimeNetworkAnalyzer.java`) |
+| Backend | C++ (`data/CrimeNetworkBackend.cpp`) — graph algorithms, file-based JSON IPC |
+| Data | Flat text files in `data/` (`users.txt`, `graph_data.txt`, `case_data.txt`, `assignments.txt`, `activity_log.txt`) |
+| Build | Maven (`pom.xml`, Java 24) |
 
-</td>
-<td width="50%">
+### How it works
 
-### 🧠 High-Performance Analysis
-- Relies on a compiled **C++ backend engine** for heavy algorithmic lifting.
-- Analyzes network density, central figures, and isolated clusters.
-- Fast inter-process communication (IPC) via JSON payload exchange.
+1. The C++ backend runs in the background and watches `data/request.json`.
+2. The Swing UI writes analysis/data requests as JSON and polls `data/response.json`.
+3. `data/.backend_running` is the status flag the UI checks on startup.
 
-### 📊 Case Management
-- View **Case Hierarchies** to understand chains of command.
-- Dedicated **Officer Dashboard** tracking active assignments, priorities, and statuses.
+## 🚀 Build & Run
 
-</td>
-</tr>
-</table>
+**Prerequisites:** JDK 24 and Maven installed.
 
----
-
-## 🏗️ System Architecture
-
-The application uses a decoupled hybrid architecture, allowing the UI to remain responsive while complex graph algorithms are processed rapidly in native C++.
-
-```mermaid
-flowchart LR
-    subgraph Frontend [☕ Java Swing GUI]
-        A[Login / Dashboard] --> B[Input Forms]
-        B --> C[JSON Generator]
-        D[JSON Parser] --> E[Visualizer / Tables]
-    end
-
-    subgraph IPC [📁 File System Exchange]
-        C -->|Writes request.json| F((data/))
-        F -->|Reads response.json| D
-        G[.backend_running status file] -.-> A
-    end
-
-    subgraph Backend [⚙️ C++ Engine]
-        H[JSON Listener] -->|Reads| F
-        H --> I[Graph Algorithms]
-        I -->|Writes| F
-    end
-```
-
----
-
-## 🛠️ Tech Stack
-
-<div align="center">
-
-| Component | Technology | Purpose |
-|:---|:---|:---|
-| **Frontend Framework** | Java Swing / AWT | Desktop GUI, interactive dashboards, event handling |
-| **Backend Engine** | C++ | Graph analytics and high-speed data processing |
-| **Build System** | Apache Maven | Dependency management (`pom.xml`) |
-| **Data Exchange** | JSON | Standardized schema for Java ↔ C++ communication |
-| **IDE** | NetBeans | Project configuration (`nbactions.xml`) |
-
-</div>
-
----
-
-## 🚀 Quick Start
-
-Because this system relies on a compiled C++ backend to function correctly, follow these setup steps carefully.
-
-### Prerequisites
-- **Java JDK 8+** (For the Frontend)
-- **Apache Maven** (For building the Java project)
-- **C++ Compiler** (e.g., `g++`, `MinGW` on Windows)
-
-### Installation & Execution
-
-**1. Clone the repository**
 ```bash
-git clone https://github.com/hussnainahmedd/CrimeNetworkAnalyzer.git
-cd CrimeNetworkAnalyzer
+# 1. Build the Java frontend
+mvn compile
+
+# 2. Start the C++ backend (Windows build is included)
+./data/CrimeNetworkBackend.exe
+# — or compile it yourself on Linux/macOS:
+#   g++ -o backend data/CrimeNetworkBackend.cpp && ./backend
+
+# 3. Run the app (default credentials live in data/users.txt)
+java -cp target/classes CrimeNetworkAnalyzer
 ```
 
-**2. Compile and Start the C++ Backend**
-You must start the backend *before* running the Java GUI.
-```bash
-# Compile the C++ backend source (replace with actual filename if different)
-g++ CrimeNetworkBackend.cpp -o backend
+> ⚠️ Note: the backend talks to the frontend through a hardcoded `DATA_DIR` path at the top of `CrimeNetworkAnalyzer.java` (currently a Windows path). Point it at your local `data/` folder before running on another machine.
 
-# Run the backend process
-./backend       # On Linux/Mac
-backend.exe     # On Windows
+## 📁 Project Structure
+
 ```
-*(The backend will create a `.backend_running` file in the `data/` directory to signal the GUI).*
-
-**3. Compile and Run the Java Frontend**
-In a new terminal window:
-```bash
-mvn clean install
-mvn exec:java -Dexec.mainClass="CrimeNetworkAnalyzer"
+CrimeNetworkAnalyzer/
+├── src/main/java/CrimeNetworkAnalyzer.java  # entire Swing frontend (login + tabs)
+├── data/
+│   ├── CrimeNetworkBackend.cpp               # C++ analysis engine
+│   ├── CrimeNetworkBackend.exe               # prebuilt Windows backend
+│   └── *.txt                                 # users, graph, cases, assignments, logs
+└── pom.xml                                   # Maven build (Java 24)
 ```
 
----
+## 📝 What I learned
 
-## 📖 Usage Guide
-
-1. **Launch Sequence:** Always ensure the C++ backend is running in the background. If the Java app detects the backend is missing, it will display a warning prompt.
-2. **Login:** Use appropriate credentials. Your role (Admin vs. Officer) determines your visible tabs.
-3. **Data Entry (Admin):** Navigate to the **Add Suspect** or **Add Crime Location** tabs to populate the database. Use the **Add Connection** tab to link them.
-4. **Analysis:** Click the **Analyze Network** tab. The Java app will bundle the current graph state into `request.json`, trigger the C++ backend, and display the results read from `response.json`.
-
----
-
-## 🤝 Contributing
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/investigation-tool`)
-3. **Commit** your changes (`git commit -m '✨ Add new analytics tool'`)
-4. **Push** to the branch (`git push origin feature/investigation-tool`)
-5. **Open** a Pull Request
+Building this taught me how to design a small client–server-style system with plain files as the transport, how graph algorithms like BFS/DFS/shortest path map to real data, and why separating UI from compute logic keeps an app maintainable. Built as a data structures & algorithms course project.
 
 ---
 
 <div align="center">
 
-**⭐ Star this repo if you found it useful!**
-
-<br/>
-
-Built with ☕ Java, ⚙️ C++, and 🕵️‍♂️ Intelligence.
+Built by **Hussnain Ahmad** — [github.com/hussnainahmedd](https://github.com/hussnainahmedd)
 
 </div>
